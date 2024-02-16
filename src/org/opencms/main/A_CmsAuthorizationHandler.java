@@ -99,6 +99,7 @@ public abstract class A_CmsAuthorizationHandler implements I_CmsAuthorizationHan
         }
 
         // update the request context
+        // asdf
         cms = OpenCmsCore.getInstance().updateContext(request, cms);
 
         CmsUser user = cms.getRequestContext().getCurrentUser();
