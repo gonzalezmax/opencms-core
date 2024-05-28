@@ -567,7 +567,7 @@ Calendar.dayMouseOut = function(ev) {
 		if (el.caldate)
 			removeClass(el.parentNode, "rowhilite");
 		if (el.calendar)
-			el.calendar.tooltips.innerHTML = _TT["SEL_DATE"];
+			el.calendar.tooltips.textContent = _TT["SEL_DATE"];
 		return stopEvent(ev);
 	}
 };
