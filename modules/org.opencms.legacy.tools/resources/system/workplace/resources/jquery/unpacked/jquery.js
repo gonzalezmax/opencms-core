@@ -5676,7 +5676,7 @@ jQuery.fn.extend({
 						elem = this[i] || {};
 						if ( elem.nodeType === 1 ) {
 							jQuery.cleanData( elem.getElementsByTagName( "*" ) );
-							elem.innerHTML = value;
+							elem.textContent = value;
 						}
 					}
 
