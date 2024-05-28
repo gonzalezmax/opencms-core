@@ -761,7 +761,7 @@ Calendar.prototype.create = function (_par) {
 		Calendar._add_evs(cell);
 		cell.calendar = cal;
 		cell.navtype = navtype;
-		cell.innerHTML = "<div unselectable='on'>" + text + "</div>";
+		cell.textContent = "<div unselectable='on'>" + text + "</div>";
 		return cell;
 	};
 
