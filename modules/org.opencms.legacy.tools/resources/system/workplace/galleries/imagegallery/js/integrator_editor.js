@@ -548,7 +548,7 @@ function createEnhancedImage() {
 			oSpan3.style.cssText = "display: block; clear: both;";
 			oSpan3.className = "imgSubtitle";
 			oSpan3.id = "simg_" + activeItem.hash;
-			oSpan3.innerHTML = altText;
+			oSpan3.textContent = altText;
 			oNewElement.appendChild(oSpan3);
 		}
 
