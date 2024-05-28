@@ -803,7 +803,7 @@ Calendar.prototype.create = function (_par) {
 	if (this.weekNumbers) {
 		cell = Calendar.createElement("td", row);
 		cell.className = "name wn";
-		cell.innerHTML = Calendar._TT["WK"];
+		cell.textContent = Calendar._TT["WK"];
 	}
 	for (var i = 7; i > 0; --i) {
 		cell = Calendar.createElement("td", row);
