@@ -28,7 +28,7 @@ function injectButton() {
     if (self === top) {
         var injectElement = document.createElement("div");
 		// previewSettings is injected into the page 
-        injectElement.innerHTML = "<button id='opencms-leave-preview' class='opencms-icon opencms-icon-edit-point cmsState-up' onClick='openEditor()' style='left:" + previewSettings.buttonLeft + ";' title='"+previewSettings.titleMessage+"'></button>";
+        injectElement.textContent = "<button id='opencms-leave-preview' class='opencms-icon opencms-icon-edit-point cmsState-up' onClick='openEditor()' style='left:" + previewSettings.buttonLeft + ";' title='"+previewSettings.titleMessage+"'></button>";
         document.body.appendChild(injectElement);
         setInterval(sendHeartbeat, 15000);
     }
