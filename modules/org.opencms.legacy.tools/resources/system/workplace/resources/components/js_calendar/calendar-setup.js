@@ -111,7 +111,7 @@ Calendar.setup = function (params) {
 				p.inputField.onchange();
 		}
 		if (update && p.displayArea)
-			p.displayArea.innerHTML = cal.date.print(p.daFormat);
+			p.displayArea.textContent = cal.date.print(p.daFormat);
 		if (update && typeof p.onUpdate == "function")
 			p.onUpdate(cal);
 		if (update && p.flat) {
