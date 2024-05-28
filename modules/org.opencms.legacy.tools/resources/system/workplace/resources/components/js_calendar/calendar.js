@@ -894,7 +894,7 @@ Calendar.prototype.create = function (_par) {
 					if (hrs == 0) hrs = 12;
 					AP.innerHTML = pm ? "pm" : "am";
 				}
-				H.innerHTML = (hrs < 10) ? ("0" + hrs) : hrs;
+				H.textContent = (hrs < 10) ? ("0" + hrs) : hrs;
 				M.innerHTML = (mins < 10) ? ("0" + mins) : mins;
 			};
 
