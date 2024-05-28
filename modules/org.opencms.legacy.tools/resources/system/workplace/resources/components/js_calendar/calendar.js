@@ -943,7 +943,7 @@ Calendar.prototype.create = function (_par) {
 		var mn = Calendar.createElement("div");
 		mn.className = Calendar.is_ie ? "label-IEfix" : "label";
 		mn.month = i;
-		mn.innerHTML = Calendar._SMN[i];
+		mn.textContent = Calendar._SMN[i];
 		div.appendChild(mn);
 	}
 
