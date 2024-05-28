@@ -473,7 +473,7 @@ __FlyDOM_setText = function(element, content)
     // An exception is made for <textarea></textarea>; all text must be treated as text.
     if (content.match(isHtml) != null && element.tagName.toUpperCase() != 'TEXTAREA') {
 
-        element.innerHTML = content;
+        element.textContent = content;
 
     } else {
 
