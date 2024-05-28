@@ -6111,7 +6111,7 @@ jQuery.extend({
 					tag = ( rtagName.exec( elem ) || ["", ""] )[1].toLowerCase();
 					wrap = wrapMap[ tag ] || wrapMap._default;
 					depth = wrap[0];
-					div.innerHTML = wrap[1] + elem + wrap[2];
+					div.textContent = wrap[1] + elem + wrap[2];
 
 					// Move to the right depth
 					while ( depth-- ) {
