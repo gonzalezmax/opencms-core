@@ -654,13 +654,14 @@ public class CmsLoginHelper extends CmsJspLoginBean {
             maxAge = (int)((cal.getTimeInMillis() - System.currentTimeMillis()) / 1000);
         }
         cookie.setMaxAge(maxAge);
-        // set the path
         cookie.setPath(
             CmsStringUtil.joinPaths(
                 OpenCms.getStaticExportManager().getVfsPrefix(),
                 CmsWorkplaceLoginHandler.LOGIN_HANDLER));
-        // set the cookie
+        cookie.setSecure(true);
         response.addCookie(cookie);
+
+
     }
 
     /**
