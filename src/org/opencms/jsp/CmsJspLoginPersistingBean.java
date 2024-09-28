@@ -108,6 +108,7 @@ public class CmsJspLoginPersistingBean extends CmsJspLoginBean {
                 Cookie cookie = new Cookie(CmsPersistentLoginAuthorizationHandler.COOKIE_NAME, token);
                 cookie.setMaxAge((int)(m_tokenLifetime / 1000));
                 cookie.setPath(getCookiePath(true));
+                cookie.setSecure(true);
                 getResponse().addCookie(cookie);
                 m_isTokenSet = true;
             } catch (CmsException e) {
@@ -141,6 +142,7 @@ public class CmsJspLoginPersistingBean extends CmsJspLoginBean {
                 Cookie cookie = new Cookie(CmsPersistentLoginAuthorizationHandler.COOKIE_NAME, "");
                 cookie.setMaxAge(0);
                 cookie.setPath(getCookiePath(true));
+                cookie.setSecure(true);
                 getResponse().addCookie(cookie);
                 tokenHandler.invalidateToken(
                     user,

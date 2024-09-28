@@ -961,6 +961,7 @@ public final class CmsRequestUtil {
             }
         }
         Cookie cookie = new Cookie(name, value);
+        cookie.setSecure(true);
         jsp.getResponse().addCookie(cookie);
     }
 
