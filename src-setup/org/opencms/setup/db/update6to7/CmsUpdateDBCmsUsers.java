@@ -27,6 +27,7 @@
 
 package org.opencms.setup.db.update6to7;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.opencms.setup.CmsSetupDBWrapper;
 import org.opencms.setup.CmsSetupDb;
 import org.opencms.setup.db.A_CmsUpdateDBPart;
@@ -163,6 +164,7 @@ public class CmsUpdateDBCmsUsers extends A_CmsUpdateDBPart {
 
                             ByteArrayInputStream bin = new ByteArrayInputStream(blob.getBytes(1, (int)blob.length()));
                             ObjectInputStream oin = new ObjectInputStream(bin);
+                            ObjectInputFilters.enableObjectFilterIfUnprotected(oin);
 
                             Map<String, Object> infos = CmsCollectionsGenericWrapper.map(oin.readObject());
 

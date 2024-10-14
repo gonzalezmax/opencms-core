@@ -27,6 +27,7 @@
 
 package org.opencms.util;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.opencms.test.OpenCmsTestCase;
 
 import java.io.ByteArrayInputStream;
@@ -221,6 +222,7 @@ public class TestCmsUUID extends OpenCmsTestCase {
         byte[] bytes = (byte[])m_serializedMap.get(name);
         ByteArrayInputStream bin = new ByteArrayInputStream(bytes);
         ObjectInputStream oin = new ObjectInputStream(bin);
+        ObjectInputFilters.enableObjectFilterIfUnprotected(oin);
         return oin.readObject();
     }
 
@@ -236,6 +238,7 @@ public class TestCmsUUID extends OpenCmsTestCase {
     protected Object deSerializeObjectFromFile(String name) throws Exception {
 
         ObjectInputStream oin = new ObjectInputStream(getClass().getClassLoader().getResourceAsStream(name));
+        ObjectInputFilters.enableObjectFilterIfUnprotected(oin);
         return oin.readObject();
     }
 

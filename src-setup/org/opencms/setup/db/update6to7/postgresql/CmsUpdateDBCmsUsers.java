@@ -27,6 +27,7 @@
 
 package org.opencms.setup.db.update6to7.postgresql;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.opencms.setup.CmsSetupDBWrapper;
 import org.opencms.setup.CmsSetupDb;
 import org.opencms.util.CmsCollectionsGenericWrapper;
@@ -129,6 +130,7 @@ public class CmsUpdateDBCmsUsers extends org.opencms.setup.db.update6to7.CmsUpda
 
                             ByteArrayInputStream bin = new ByteArrayInputStream(blob);
                             ObjectInputStream oin = new ObjectInputStream(bin);
+                            ObjectInputFilters.enableObjectFilterIfUnprotected(oin);
 
                             Map<String, Object> infos = CmsCollectionsGenericWrapper.map(oin.readObject());
 
