@@ -27,6 +27,7 @@
 
 package org.opencms.search.solr.spellchecking;
 
+import io.github.pixee.security.ZipSecurity;
 import org.opencms.file.CmsFile;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsProject;
@@ -190,7 +191,7 @@ public final class CmsSpellcheckDictionaryIndexer {
 
                     // Read zip file content
                     try (
-                    ZipInputStream zipStream = new ZipInputStream(new ByteArrayInputStream(cmsFile.getContents()))) {
+                    ZipInputStream zipStream = ZipSecurity.createHardenedInputStream(new ByteArrayInputStream(cmsFile.getContents()))) {
 
                         // Holds several entries (files) of the zipfile
                         ZipEntry entry = zipStream.getNextEntry();
