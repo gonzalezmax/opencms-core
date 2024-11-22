@@ -838,7 +838,7 @@ Calendar.prototype.create = function (_par) {
 		cell = Calendar.createElement("td", row);
 		cell.className = "time";
 		cell.colSpan = 2;
-		cell.innerHTML = Calendar._TT["TIME"] || "&nbsp;";
+		cell.textContent = Calendar._TT["TIME"] || "&nbsp;";
 
 		cell = Calendar.createElement("td", row);
 		cell.className = "time";
