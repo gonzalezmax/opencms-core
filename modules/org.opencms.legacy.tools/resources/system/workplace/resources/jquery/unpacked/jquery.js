@@ -6026,7 +6026,7 @@ jQuery.extend({
 
 		// IE<=8 does not properly clone detached, unknown element nodes
 		} else {
-			fragmentDiv.innerHTML = elem.outerHTML;
+			fragmentDiv.textContent = elem.outerHTML;
 			fragmentDiv.removeChild( clone = fragmentDiv.firstChild );
 		}
 
