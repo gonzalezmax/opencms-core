@@ -682,7 +682,7 @@ Calendar.cellClick = function(el, ev) {
 			} else if ( ++i >= range.length )
 				i = 0;
 			var newval = range[i];
-			el.innerHTML = newval;
+			el.textContent = newval;
 			cal.onUpdateTime();
 			return;
 		    case 0:
