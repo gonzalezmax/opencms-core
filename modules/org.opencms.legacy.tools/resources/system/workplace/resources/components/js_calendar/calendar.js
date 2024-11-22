@@ -848,7 +848,7 @@ Calendar.prototype.create = function (_par) {
 			function makeTimePart(className, init, range_start, range_end) {
 				var part = Calendar.createElement("span", cell);
 				part.className = className;
-				part.innerHTML = init;
+				part.textContent = init;
 				part.calendar = cal;
 				part.ttip = Calendar._TT["TIME_PART"];
 				part.navtype = 50;
