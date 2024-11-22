@@ -301,7 +301,7 @@ Calendar.showYearsCombo = function (fwd) {
 	var show = false;
 	for (var i = 12; i > 0; --i) {
 		if (Y >= cal.minYear && Y <= cal.maxYear) {
-			yr.innerHTML = Y;
+			yr.textContent = Y;
 			yr.year = Y;
 			yr.style.display = "block";
 			show = true;
