@@ -534,7 +534,7 @@ function createEnhancedImage() {
 			oSpan2.style.cssText = "display: block; clear: both;";
 			oSpan2.className = "imgCopyright";
 			oSpan2.id = "cimg_" + activeItem.hash;
-			oSpan2.innerHTML = copyText;
+			oSpan2.textContent = copyText;
 			oNewElement.appendChild(oSpan2);
 		}
 
