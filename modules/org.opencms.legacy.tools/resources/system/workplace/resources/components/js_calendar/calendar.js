@@ -1535,7 +1535,7 @@ Calendar.prototype._displayWeekdays = function () {
 		if (weekend.indexOf(realday.toString()) != -1) {
 			Calendar.addClass(cell, "weekend");
 		}
-		cell.innerHTML = Calendar._SDN[(i + fdow) % 7];
+		cell.textContent = Calendar._SDN[(i + fdow) % 7];
 		cell = cell.nextSibling;
 	}
 };
