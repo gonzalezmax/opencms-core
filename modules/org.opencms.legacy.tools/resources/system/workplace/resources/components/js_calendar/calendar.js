@@ -1118,7 +1118,7 @@ Calendar.prototype._init = function (firstDayOfWeek, date) {
 		var cell = row.firstChild;
 		if (this.weekNumbers) {
 			cell.className = "day wn";
-			cell.innerHTML = date.getWeekNumber();
+			cell.textContent = date.getWeekNumber();
 			cell = cell.nextSibling;
 		}
 		row.className = "daysrow";
