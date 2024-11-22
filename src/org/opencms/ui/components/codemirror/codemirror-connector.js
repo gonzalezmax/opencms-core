@@ -197,7 +197,7 @@ window.org_opencms_ui_components_codemirror_CmsCodeMirror = function() {
     initCodeMirror = function() {
     	initializing=false;
     	codeMirrorId="cm-addon-"+currentCodeData.m_id;
-    	e.innerHTML = e.innerHTML + "<div id='"+codeMirrorId+ "'></div>";
+    	e.textContent = e.innerHTML + "<div id='"+codeMirrorId+ "'></div>";
         var mode=currentCodeData.m_highlighting? currentCodeData.m_mode:"text/plain";
         codemirror = CodeMirror(document.getElementById(codeMirrorId), {
         	value: currentCodeData.m_contentValue,
