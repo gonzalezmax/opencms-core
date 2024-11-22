@@ -547,7 +547,7 @@ Calendar.dayMouseOver = function(ev) {
 		if (el.ttip.substr(0, 1) == "_") {
 			el.ttip = el.caldate.print(el.calendar.ttDateFormat) + el.ttip.substr(1);
 		}
-		el.calendar.tooltips.innerHTML = el.ttip;
+		el.calendar.tooltips.textContent = el.ttip;
 	}
 	if (el.navtype != 300) {
 		Calendar.addClass(el, "hilite");
