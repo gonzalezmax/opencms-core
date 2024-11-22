@@ -189,7 +189,7 @@ window.org_opencms_ui_components_codemirror_CmsCodeMirror = function() {
     	if (dialog!=null){
     		var insert=window.document.createElement("DIV");
     		insert.setAttribute("class", "CodeMirror-shortcutinfo")
-    		insert.innerHTML=currentCodeData.m_shortcutsMessage;
+    		insert.textContent = currentCodeData.m_shortcutsMessage;
     		dialog.insertBefore(insert, dialog.firstChild);
     	}
     }
