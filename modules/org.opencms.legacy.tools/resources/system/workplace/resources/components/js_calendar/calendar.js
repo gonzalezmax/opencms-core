@@ -1145,7 +1145,7 @@ Calendar.prototype._init = function (firstDayOfWeek, date) {
 				hasdays = true;
 			}
 			cell.disabled = false;
-			cell.innerHTML = this.getDateText ? this.getDateText(date, iday) : iday;
+			cell.textContent = this.getDateText ? this.getDateText(date, iday) : iday;
 			if (dates)
 				dates[date.print("%Y%m%d")] = cell;
 			if (this.getDateStatus) {
