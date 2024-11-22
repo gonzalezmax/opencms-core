@@ -895,7 +895,7 @@ Calendar.prototype.create = function (_par) {
 					AP.innerHTML = pm ? "pm" : "am";
 				}
 				H.innerHTML = (hrs < 10) ? ("0" + hrs) : hrs;
-				M.innerHTML = (mins < 10) ? ("0" + mins) : mins;
+				M.textContent = (mins < 10) ? ("0" + mins) : mins;
 			};
 
 			cal.onUpdateTime = function() {
