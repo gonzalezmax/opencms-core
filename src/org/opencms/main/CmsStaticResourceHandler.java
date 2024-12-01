@@ -27,6 +27,8 @@
 
 package org.opencms.main;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.opencms.util.CmsStringUtil;
 
 import java.io.FileNotFoundException;
@@ -347,7 +349,7 @@ public class CmsStaticResourceHandler implements I_CmsRequestHandler {
             if (allowServePrecompressedResource(request, urlStr)) {
                 // try to serve a precompressed version if available
                 try {
-                    connection = new URL(urlStr + ".gz").openConnection();
+                    connection = Urls.create(urlStr + ".gz", Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).openConnection();
                     is = connection.getInputStream();
                     // set gzip headers
                     response.setHeader("Content-Encoding", "gzip");

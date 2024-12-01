@@ -27,6 +27,8 @@
 
 package org.opencms.gwt;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.opencms.db.CmsDriverManager;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsResource;
@@ -201,7 +203,7 @@ public class CmsGwtServiceContext implements I_CmsEventListener {
         // locate the serialization policy file in OpenCms
         String modulePath = null;
         try {
-            modulePath = new URL(moduleBaseURL).getPath();
+            modulePath = Urls.create(moduleBaseURL, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS).getPath();
         } catch (MalformedURLException ex) {
             // moduleBaseUrl is bad
             LOG.error(ex.getLocalizedMessage(), ex);

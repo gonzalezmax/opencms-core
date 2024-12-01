@@ -27,6 +27,8 @@
 
 package org.opencms.staticexport;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsProject;
 import org.opencms.file.CmsResource;
@@ -119,7 +121,7 @@ public class CmsLinkManager {
             return relativeUri;
         }
         try {
-            URL url = new URL(new URL(m_baseUrl, baseUri), relativeUri);
+            URL url = Urls.create(Urls.create(m_baseUrl, baseUri, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS), relativeUri, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             StringBuffer result = new StringBuffer(100);
             result.append(url.getPath());
             if (url.getQuery() != null) {

@@ -27,6 +27,8 @@
 
 package org.opencms.workplace.tools.database;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.opencms.configuration.CmsParameterConfiguration;
 import org.opencms.db.CmsDbIoException;
 import org.opencms.file.CmsFolder;
@@ -236,7 +238,7 @@ public class CmsHtmlImport {
 
         try {
             URL baseUrl = new URL("file://");
-            URL url = new URL(new URL(baseUrl, "file://" + baseUri), relativeUri);
+            URL url = Urls.create(Urls.create(baseUrl, "file://" + baseUri, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS), relativeUri, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
             if (url.getQuery() == null) {
                 if (url.getRef() == null) {
                     return url.getHost() + windowsAddition + url.getPath();
