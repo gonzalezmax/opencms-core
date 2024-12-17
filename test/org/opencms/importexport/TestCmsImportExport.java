@@ -27,6 +27,7 @@
 
 package org.opencms.importexport;
 
+import java.nio.file.Files;
 import org.opencms.file.CmsFile;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsProject;
@@ -156,7 +157,7 @@ public class TestCmsImportExport extends OpenCmsTestCase {
      */
     public File tempExport() throws IOException {
 
-        File file = File.createTempFile("opencms-test-export_", ".zip");
+        File file = Files.createTempFile("opencms-test-export_", ".zip").toFile();
         file.deleteOnExit();
         return file;
     }

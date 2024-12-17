@@ -27,6 +27,7 @@
 
 package org.opencms.module;
 
+import java.nio.file.Files;
 import org.opencms.db.CmsExportPoint;
 import org.opencms.file.CmsFile;
 import org.opencms.file.CmsObject;
@@ -99,7 +100,7 @@ public class TestModuleUpdate extends OpenCmsTestCase {
      */
     public File tempExport() throws IOException {
 
-        File file = File.createTempFile("opencms-test-export_", ".zip");
+        File file = Files.createTempFile("opencms-test-export_", ".zip").toFile();
         file.deleteOnExit();
         return file;
     }
@@ -237,7 +238,7 @@ public class TestModuleUpdate extends OpenCmsTestCase {
      */
     public void testExportPoints() throws Exception {
 
-        File target = File.createTempFile("ocms-test-exportpoint-", ".dat");
+        File target = Files.createTempFile("ocms-test-exportpoint-", ".dat").toFile();
         target.delete();
         target.deleteOnExit();
         CmsObject cms = cms();

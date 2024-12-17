@@ -31,6 +31,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -142,7 +143,7 @@ public class CmsZipBuilder {
      */
     public File writeZip() throws IOException {
 
-        File file = File.createTempFile("CmsZipBuilderTempFile-", ".zip");
+        File file = Files.createTempFile("CmsZipBuilderTempFile-", ".zip").toFile();
         try (ZipOutputStream zos = new ZipOutputStream(new FileOutputStream(file))) {
             write(zos);
         }

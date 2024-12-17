@@ -27,6 +27,7 @@
 
 package org.opencms.workplace.tools.database;
 
+import java.nio.file.Files;
 import org.opencms.configuration.CmsParameterConfiguration;
 import org.opencms.db.CmsDbIoException;
 import org.opencms.file.CmsFolder;
@@ -204,7 +205,7 @@ public class CmsHtmlImport {
     public static File createTempFolder(String name) throws Exception {
 
         File folder = null;
-        folder = File.createTempFile(name, "", null);
+        folder = Files.createTempFile(null.toPath(), name, "").toFile();
         folder.delete();
         folder.mkdirs();
         folder.deleteOnExit();

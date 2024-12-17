@@ -27,6 +27,7 @@
 
 package org.opencms.test;
 
+import java.nio.file.Files;
 import org.opencms.configuration.CmsParameterConfiguration;
 import org.opencms.db.CmsDbPoolV11;
 import org.opencms.db.CmsResourceState;
@@ -313,7 +314,7 @@ public class OpenCmsTestCase extends TestCase {
     public static File createBaseModuleZip() throws Exception {
 
         File base = new File("modules/org.opencms.base/resources");
-        File tempZip = File.createTempFile("module_", ".zip");
+        File tempZip = Files.createTempFile("module_", ".zip").toFile();
         CmsGitCheckin.zipRfsFolder(base, new FileOutputStream(tempZip));
         File renamedFile = new File(
             tempZip.getParentFile(),
