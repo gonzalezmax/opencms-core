@@ -27,6 +27,7 @@
 
 package org.opencms.main;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.ade.detailpage.CmsDetailPageResourceHandler;
 import org.opencms.db.CmsAlias;
 import org.opencms.db.CmsRewriteAliasMatcher;
@@ -186,7 +187,7 @@ public class CmsAliasResourceHandler implements I_CmsResourceInit {
             if (isPermanent && cms.getRequestContext().getCurrentProject().isOnlineProject()) {
                 // offline permanent redirects are confusing and not useful because the user can switch sites while staying on the same domain
                 res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-                res.setHeader("Location", link);
+                res.setHeader("Location", Newlines.stripAll(link));
             } else {
                 res.sendRedirect(link);
             }

@@ -27,6 +27,7 @@
 
 package org.opencms.main;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.ade.configuration.CmsADEManager;
 import org.opencms.ade.containerpage.CmsContainerpageService;
 import org.opencms.cache.CmsVfsMemoryObjectCache;
@@ -2258,7 +2259,7 @@ public final class OpenCmsCore {
                         case permanent:
                             res.setHeader(
                                 CmsRequestUtil.HEADER_LOCATION,
-                                m_siteManager.getCurrentSite(cms).getUrl() + req.getContextPath() + req.getPathInfo());
+                                Newlines.stripAll(m_siteManager.getCurrentSite(cms).getUrl() + req.getContextPath() + req.getPathInfo()));
                             res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
                             return;
                         default:
@@ -3090,7 +3091,7 @@ public final class OpenCmsCore {
                         try {
                             if (site.usesPermanentRedirects()) {
                                 res.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
-                                res.setHeader("Location", target);
+                                res.setHeader("Location", Newlines.stripAll(target));
                             } else {
                                 res.sendRedirect(target);
                             }

@@ -27,6 +27,7 @@
 
 package org.opencms.loader;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.configuration.CmsParameterConfiguration;
 import org.opencms.file.CmsFile;
 import org.opencms.file.CmsObject;
@@ -123,7 +124,7 @@ public class CmsDumpLoader implements I_CmsResourceLoader {
                 // set header only if format is "key: value"
                 String[] parts = CmsStringUtil.splitAsArray(header, ':');
                 if (parts.length == 2) {
-                    res.setHeader(parts[0], parts[1]);
+                    res.setHeader(parts[0], Newlines.stripAll(parts[1]));
                 }
             }
             load(cms, file, req, res);

@@ -27,6 +27,7 @@
 
 package org.opencms.workplace.commons;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.file.CmsFile;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsResource;
@@ -353,7 +354,7 @@ public class CmsDisplayResource extends CmsDialog {
 
             res.setHeader(
                 CmsRequestUtil.HEADER_CONTENT_DISPOSITION,
-                new StringBuffer("attachment; filename=\"").append(resourceStr).append("\"").toString());
+                Newlines.stripAll(new StringBuffer("attachment; filename=\"").append(resourceStr).append("\"").toString()));
             res.setContentLength(result.length);
 
             CmsFlexController controller = CmsFlexController.getController(req);

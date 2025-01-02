@@ -27,6 +27,7 @@
 
 package org.opencms.util;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.flex.CmsFlexRequest;
 import org.opencms.flex.CmsFlexResponse;
 import org.opencms.i18n.CmsEncoder;
@@ -904,7 +905,7 @@ public final class CmsRequestUtil {
             if (response instanceof CmsFlexResponse) {
                 ((CmsFlexResponse)jsp.getResponse()).sendRedirect(target, true);
             } else {
-                response.setHeader("Location", target);
+                response.setHeader("Location", Newlines.stripAll(target));
                 response.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
             }
         } catch (IOException e) {
@@ -978,11 +979,11 @@ public final class CmsRequestUtil {
      */
     public static void setNoCacheHeaders(HttpServletResponse res) {
 
-        res.setHeader(CmsRequestUtil.HEADER_CACHE_CONTROL, CmsRequestUtil.HEADER_VALUE_MAX_AGE + "0");
+        res.setHeader(CmsRequestUtil.HEADER_CACHE_CONTROL, Newlines.stripAll(CmsRequestUtil.HEADER_VALUE_MAX_AGE + "0"));
         res.addHeader(CmsRequestUtil.HEADER_CACHE_CONTROL, CmsRequestUtil.HEADER_VALUE_MUST_REVALIDATE);
         res.addHeader(CmsRequestUtil.HEADER_CACHE_CONTROL, CmsRequestUtil.HEADER_VALUE_NO_CACHE);
         res.addHeader(CmsRequestUtil.HEADER_CACHE_CONTROL, CmsRequestUtil.HEADER_VALUE_NO_STORE);
-        res.setHeader(CmsRequestUtil.HEADER_PRAGMA, CmsRequestUtil.HEADER_VALUE_NO_CACHE);
+        res.setHeader(CmsRequestUtil.HEADER_PRAGMA, Newlines.stripAll(CmsRequestUtil.HEADER_VALUE_NO_CACHE));
     }
 
     /**

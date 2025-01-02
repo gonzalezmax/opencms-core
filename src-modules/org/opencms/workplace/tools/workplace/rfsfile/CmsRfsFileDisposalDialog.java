@@ -27,6 +27,7 @@
 
 package org.opencms.workplace.tools.workplace.rfsfile;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.flex.CmsFlexController;
 import org.opencms.jsp.CmsJspActionElement;
 import org.opencms.main.CmsRuntimeException;
@@ -112,7 +113,7 @@ public class CmsRfsFileDisposalDialog extends CmsWidgetDialog {
         res.setContentType("application/octet-stream");
         res.setHeader(
             "Content-Disposition",
-            new StringBuffer("attachment; filename=\"").append(getDownloadFile().getName()).append("\"").toString());
+            Newlines.stripAll(new StringBuffer("attachment; filename=\"").append(getDownloadFile().getName()).append("\"").toString()));
         res.setContentLength((int)getDownloadFile().length());
 
         // getOutputStream() throws IllegalStateException if the jsp directive buffer="none" is set.

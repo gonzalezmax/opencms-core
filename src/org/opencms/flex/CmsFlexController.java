@@ -27,6 +27,7 @@
 
 package org.opencms.flex;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.ade.detailpage.CmsDetailPageResourceHandler;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsResource;
@@ -356,7 +357,7 @@ public class CmsFlexController {
 
             // setting the "Expires" header only is not sufficient - even expired documents seems to be cached
             // therefore, the "cache-control: max-age" is also set
-            res.setHeader(CmsRequestUtil.HEADER_CACHE_CONTROL, CmsRequestUtil.HEADER_VALUE_MAX_AGE + (maxAge / 1000L));
+            res.setHeader(CmsRequestUtil.HEADER_CACHE_CONTROL, Newlines.stripAll(CmsRequestUtil.HEADER_VALUE_MAX_AGE + (maxAge / 1000L)));
         }
     }
 
