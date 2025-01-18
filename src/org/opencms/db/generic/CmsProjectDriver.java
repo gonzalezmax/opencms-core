@@ -27,6 +27,7 @@
 
 package org.opencms.db.generic;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.opencms.configuration.CmsConfigurationManager;
 import org.opencms.configuration.CmsParameterConfiguration;
 import org.opencms.db.CmsAliasFilter;
@@ -3174,6 +3175,7 @@ public class CmsProjectDriver implements I_CmsDriver, I_CmsProjectDriver {
 
         ByteArrayInputStream bin = new ByteArrayInputStream(bytes);
         ObjectInputStream oin = new ObjectInputStream(bin);
+        ObjectInputFilters.enableObjectFilterIfUnprotected(oin);
         return (CmsPublishList)oin.readObject();
     }
 

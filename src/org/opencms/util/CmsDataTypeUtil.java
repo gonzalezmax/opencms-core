@@ -27,6 +27,7 @@
 
 package org.opencms.util;
 
+import io.github.pixee.security.ObjectInputFilters;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -80,6 +81,7 @@ public final class CmsDataTypeUtil {
         // this is a serialized object
         ByteArrayInputStream bin = new ByteArrayInputStream(data);
         ObjectInputStream oin = new ObjectInputStream(bin);
+        ObjectInputFilters.enableObjectFilterIfUnprotected(oin);
         return oin.readObject();
     }
 

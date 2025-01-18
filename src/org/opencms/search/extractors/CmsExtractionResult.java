@@ -27,6 +27,7 @@
 
 package org.opencms.search.extractors;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.opencms.util.CmsStringUtil;
 
 import java.io.ByteArrayInputStream;
@@ -169,6 +170,7 @@ public class CmsExtractionResult implements I_CmsExtractionResult, Serializable 
             try {
                 ByteArrayInputStream in = new ByteArrayInputStream(bytes);
                 ObjectInputStream oin = new ObjectInputStream(in);
+                ObjectInputFilters.enableObjectFilterIfUnprotected(oin);
                 obj = oin.readObject();
                 oin.close();
             } catch (Exception e) {

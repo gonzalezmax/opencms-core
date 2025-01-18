@@ -27,6 +27,7 @@
 
 package org.opencms.importexport;
 
+import io.github.pixee.security.ObjectInputFilters;
 import org.opencms.db.CmsUserSettings;
 import org.opencms.file.CmsGroup;
 import org.opencms.file.CmsObject;
@@ -910,6 +911,7 @@ public abstract class A_CmsImport implements I_CmsImport {
                     // deserialize the object
                     ByteArrayInputStream bin = new ByteArrayInputStream(value);
                     ObjectInputStream oin = new ObjectInputStream(bin);
+                    ObjectInputFilters.enableObjectFilterIfUnprotected(oin);
                     userInfo = (Map<String, Object>)oin.readObject();
                 } catch (IOException ioex) {
                     m_report.println(ioex);
