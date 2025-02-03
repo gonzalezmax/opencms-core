@@ -31,6 +31,7 @@
 
 package org.opencms.ui.apps.sitemanager;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.opencms.file.CmsObject;
 import org.opencms.letsencrypt.CmsLetsEncryptConfiguration;
 import org.opencms.letsencrypt.CmsSiteConfigToLetsEncryptConfigConverter;
@@ -299,10 +300,10 @@ public class CmsSitesWebserverThread extends A_CmsReportThread {
         pr.waitFor();
         BufferedReader buf = new BufferedReader(new InputStreamReader(pr.getInputStream()));
         while (buf.ready()) {
-            String line = buf.readLine();
+            String line = BoundedLineReader.readLine(buf, 5_000_000);
             if (CmsStringUtil.isNotEmptyOrWhitespaceOnly(line)) {
                 getReport().println(
-                    Messages.get().container(Messages.RPT_OUTPUT_WEBSERVER_1, buf.readLine()),
+                    Messages.get().container(Messages.RPT_OUTPUT_WEBSERVER_1, BoundedLineReader.readLine(buf, 5_000_000)),
                     I_CmsReport.FORMAT_OK);
             }
         }

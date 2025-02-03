@@ -27,6 +27,7 @@
 
 package org.opencms.ui.dialogs.history.diff;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.opencms.file.CmsFile;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsResource;
@@ -174,7 +175,7 @@ public class CmsTextDiff implements I_CmsDiffProvider {
         String line;
         StringBuffer result = new StringBuffer();
         BufferedReader br = new BufferedReader(new StringReader(diff));
-        while ((line = br.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
             if ("".equals(line.trim())) {
                 line = "&nbsp;";
             }

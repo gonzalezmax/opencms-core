@@ -27,6 +27,7 @@
 
 package org.opencms.workplace.tools.accounts;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.opencms.file.CmsUser;
 import org.opencms.jsp.CmsJspActionElement;
 import org.opencms.main.CmsException;
@@ -563,7 +564,7 @@ public class CmsUserDataImportList extends A_CmsUsersList {
             String line;
             boolean headline = true;
 
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null) {
                 if (users == null) {
                     users = new ArrayList();
                 }

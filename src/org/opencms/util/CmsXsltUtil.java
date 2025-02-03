@@ -27,6 +27,7 @@
 
 package org.opencms.util;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.opencms.file.CmsObject;
 import org.opencms.main.CmsException;
 import org.opencms.xml.CmsXmlException;
@@ -234,7 +235,7 @@ public final class CmsXsltUtil {
 
         String line;
         BufferedReader br = new BufferedReader(new StringReader(csvData));
-        while ((line = br.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
             xml.append("<tr>\n");
 
             // must use tokenizer with delimiters include in order to handle empty cells appropriately
