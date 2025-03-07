@@ -27,6 +27,8 @@
 
 package org.opencms.staticexport;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.opencms.ade.detailpage.CmsDetailPageUtil;
 import org.opencms.ade.detailpage.I_CmsDetailPageHandler;
 import org.opencms.db.CmsExportPoint;
@@ -2749,7 +2751,7 @@ public class CmsStaticExportManager implements I_CmsEventListener {
         boolean isValid = false;
         try {
             if (inputString != null) {
-                URL tempURL = new URL(inputString);
+                URL tempURL = Urls.create(inputString, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
                 isValid = (tempURL.getProtocol() != null);
             }
         } catch (MalformedURLException mue) {

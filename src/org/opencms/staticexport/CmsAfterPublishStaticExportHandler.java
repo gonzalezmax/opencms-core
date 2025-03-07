@@ -27,6 +27,8 @@
 
 package org.opencms.staticexport;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.opencms.ade.detailpage.CmsDetailPageUtil;
 import org.opencms.db.CmsPublishedResource;
 import org.opencms.file.CmsObject;
@@ -534,7 +536,7 @@ public class CmsAfterPublishStaticExportHandler extends A_CmsStaticExportHandler
             LOG.debug(Messages.get().getBundle().key(Messages.LOG_SENDING_REQUEST_2, rfsName, exportUrlStr));
         }
         // setup the connection and request the resource
-        URL exportUrl = new URL(exportUrlStr);
+        URL exportUrl = Urls.create(exportUrlStr, Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         HttpURLConnection.setFollowRedirects(false);
         HttpURLConnection urlcon = (HttpURLConnection)exportUrl.openConnection();
         // set request type to GET

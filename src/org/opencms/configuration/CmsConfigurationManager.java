@@ -27,6 +27,8 @@
 
 package org.opencms.configuration;
 
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.opencms.file.CmsObject;
 import org.opencms.i18n.CmsEncoder;
 import org.opencms.main.CmsLog;
@@ -636,7 +638,7 @@ public class CmsConfigurationManager implements I_CmsXmlConfiguration {
     private void loadXmlConfiguration(URL url, I_CmsXmlConfiguration configuration) throws SAXException, IOException {
 
         // generate the file URL for the XML input
-        URL fileUrl = new URL(url, configuration.getXmlFileName());
+        URL fileUrl = Urls.create(url, configuration.getXmlFileName(), Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
         CmsLog.INIT.info(Messages.get().getBundle().key(Messages.INIT_LOAD_CONFIG_XMLFILE_1, fileUrl));
         // Check transformation rule here so we have the XML file / XSLT file log output together
         boolean hasTransformation = hasTransformation();
