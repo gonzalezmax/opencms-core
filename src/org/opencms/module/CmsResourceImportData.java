@@ -27,6 +27,7 @@
 
 package org.opencms.module;
 
+import java.nio.file.Files;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsProperty;
 import org.opencms.file.CmsResource;
@@ -310,7 +311,7 @@ public class CmsResourceImportData {
     private File createTempFile(byte[] content) {
 
         try {
-            File file = File.createTempFile("ocms-moduleresource-", ".dat");
+            File file = Files.createTempFile("ocms-moduleresource-", ".dat").toFile();
             file.deleteOnExit();
             try (FileOutputStream output = new FileOutputStream(file)) {
                 output.write(content);
