@@ -27,6 +27,7 @@
 
 package org.opencms.loader;
 
+import static io.github.pixee.security.jakarta.PathValidator.validateDispatcherPath;
 import org.opencms.configuration.CmsParameterConfiguration;
 import org.opencms.file.CmsFile;
 import org.opencms.file.CmsObject;
@@ -538,7 +539,7 @@ public class CmsJspLoader implements I_CmsResourceLoader, I_CmsFlexCacheEnabledL
                 // bypass Flex cache for this page, update the JSP first if necessary
                 String target = updateJsp(file, controller, new HashSet<String>());
                 // dispatch to external JSP
-                req.getRequestDispatcher(target).forward(controller.getCurrentRequest(), res);
+                req.getRequestDispatcher(validateDispatcherPath(target)).forward(controller.getCurrentRequest(), res);
             } else {
                 // Flex cache not bypassed, dispatch to internal JSP
                 dispatchJsp(controller);
