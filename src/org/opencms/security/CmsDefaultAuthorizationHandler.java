@@ -27,6 +27,7 @@
 
 package org.opencms.security;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.crypto.CmsEncryptionException;
 import org.opencms.file.CmsGroup;
 import org.opencms.file.CmsObject;
@@ -274,7 +275,7 @@ public class CmsDefaultAuthorizationHandler extends A_CmsAuthorizationHandler {
                 // HTTP basic authentication is used
                 res.setHeader(
                     CmsRequestUtil.HEADER_WWW_AUTHENTICATE,
-                    "BASIC realm=\"" + OpenCms.getSystemInfo().getServerName() + "\"");
+                    Newlines.stripAll("BASIC realm=\"" + OpenCms.getSystemInfo().getServerName() + "\""));
                 res.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 return;
 

@@ -27,6 +27,7 @@
 
 package org.opencms.main;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.ade.configuration.CmsADEConfigData;
 import org.opencms.file.CmsFile;
 import org.opencms.file.CmsObject;
@@ -329,7 +330,7 @@ public class OpenCmsServlet extends HttpServlet implements I_CmsRequestHandler {
             int runlevel = OpenCmsCore.getInstance().getRunLevel();
 
             // write OpenCms server identification in the response header
-            res.setHeader(CmsRequestUtil.HEADER_SERVER, OpenCmsCore.getInstance().getSystemInfo().getVersion());
+            res.setHeader(CmsRequestUtil.HEADER_SERVER, Newlines.stripAll(OpenCmsCore.getInstance().getSystemInfo().getVersion()));
 
             if (runlevel != OpenCms.RUNLEVEL_4_SERVLET_ACCESS) {
                 // not the "normal" servlet runlevel
