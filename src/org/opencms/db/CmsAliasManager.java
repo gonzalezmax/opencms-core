@@ -27,6 +27,7 @@
 
 package org.opencms.db;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsResource;
 import org.opencms.gwt.shared.alias.CmsAliasImportResult;
@@ -215,7 +216,7 @@ public class CmsAliasManager {
         checkPermissionsForMassEdit(cms);
         BufferedReader reader = new BufferedReader(
             new InputStreamReader(new ByteArrayInputStream(aliasData), CmsEncoder.ENCODING_UTF_8));
-        String line = reader.readLine();
+        String line = BoundedLineReader.readLine(reader, 5_000_000);
         List<CmsAliasImportResult> totalResult = new ArrayList<CmsAliasImportResult>();
         CmsAliasImportResult result;
         while (line != null) {
@@ -223,7 +224,7 @@ public class CmsAliasManager {
             if (result != null) {
                 totalResult.add(result);
             }
-            line = reader.readLine();
+            line = BoundedLineReader.readLine(reader, 5_000_000);
         }
         return totalResult;
     }

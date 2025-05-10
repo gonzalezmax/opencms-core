@@ -27,6 +27,7 @@
 
 package org.opencms.ui.apps.user;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsUser;
 import org.opencms.main.CmsException;
@@ -547,7 +548,7 @@ implements Receiver, I_CmsPasswordFetcher {
             String line;
             boolean headline = true;
             boolean hasBOM = false;
-            while ((line = bufferedReader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(bufferedReader, 5_000_000)) != null) {
                 if (users == null) {
                     users = new ArrayList<CmsUser>();
                 }

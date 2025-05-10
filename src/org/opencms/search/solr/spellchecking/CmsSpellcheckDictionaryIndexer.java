@@ -27,6 +27,7 @@
 
 package org.opencms.search.solr.spellchecking;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.opencms.file.CmsFile;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsProject;
@@ -447,7 +448,7 @@ public final class CmsSpellcheckDictionaryIndexer {
         final BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
         try {
-            String line = br.readLine();
+            String line = BoundedLineReader.readLine(br, 5_000_000);
             while (null != line) {
 
                 final SolrInputDocument document = new SolrInputDocument();
@@ -462,7 +463,7 @@ public final class CmsSpellcheckDictionaryIndexer {
                     documents.clear();
                 }
 
-                line = br.readLine();
+                line = BoundedLineReader.readLine(br, 5_000_000);
             }
         } catch (IOException e) {
             LOG.error("Could not read spellcheck dictionary from input stream.");

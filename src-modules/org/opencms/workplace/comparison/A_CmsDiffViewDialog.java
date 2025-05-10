@@ -28,6 +28,7 @@
 package org.opencms.workplace.comparison;
 
 import com.alkacon.diff.Diff;
+import io.github.pixee.security.BoundedLineReader;
 
 import org.opencms.jsp.CmsJspActionElement;
 import org.opencms.util.CmsStringUtil;
@@ -332,7 +333,7 @@ public abstract class A_CmsDiffViewDialog extends CmsDialog {
         String line;
         StringBuffer result = new StringBuffer();
         BufferedReader br = new BufferedReader(new StringReader(diff));
-        while ((line = br.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
             if ("".equals(line.trim())) {
                 line = "&nbsp;";
             }
