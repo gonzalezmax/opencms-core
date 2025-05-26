@@ -27,6 +27,7 @@
 
 package org.opencms.search.extractors;
 
+import io.github.pixee.security.ZipSecurity;
 import org.opencms.xml.CmsXmlGenericWrapper;
 
 import java.io.InputStream;
@@ -73,7 +74,7 @@ public final class CmsExtractorOpenOffice extends A_CmsTextExtractor {
     @Override
     public I_CmsExtractionResult extractText(InputStream in, String encoding) throws Exception {
 
-        try (ZipInputStream zin = new ZipInputStream(in)) {
+        try (ZipInputStream zin = ZipSecurity.createHardenedInputStream(in)) {
             ZipEntry ze;
             boolean FOUND_CONTENT = false;
             String result = "";
