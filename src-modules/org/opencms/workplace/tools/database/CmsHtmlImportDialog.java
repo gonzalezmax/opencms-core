@@ -27,6 +27,7 @@
 
 package org.opencms.workplace.tools.database;
 
+import java.nio.file.Files;
 import org.opencms.configuration.CmsImportExportConfiguration;
 import org.opencms.i18n.CmsEncoder;
 import org.opencms.importexport.CmsExtendedHtmlImportDefault;
@@ -584,7 +585,7 @@ public class CmsHtmlImportDialog extends CmsWidgetDialog {
             if ((fi != null) && CmsStringUtil.isNotEmptyOrWhitespaceOnly(fi.getName())) {
                 //write the file in the tmp-directory of the system
                 byte[] content = fi.get();
-                File importFile = File.createTempFile("import_html", ".zip");
+                File importFile = Files.createTempFile("import_html", ".zip").toFile();
                 //write the content in the tmp file
                 FileOutputStream fileOutput = new FileOutputStream(importFile.getAbsolutePath());
                 fileOutput.write(content);

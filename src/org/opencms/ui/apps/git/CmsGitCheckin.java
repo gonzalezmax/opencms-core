@@ -27,6 +27,7 @@
 
 package org.opencms.ui.apps.git;
 
+import java.nio.file.Files;
 import org.opencms.configuration.CmsConfigurationException;
 import org.opencms.file.CmsObject;
 import org.opencms.importexport.CmsImportExportException;
@@ -832,7 +833,7 @@ public class CmsGitCheckin {
                 }
                 try {
                     m_logStream.println("Creating temp file for module " + moduleName);
-                    File outputFile = File.createTempFile(moduleName + "-", ".zip");
+                    File outputFile = Files.createTempFile(moduleName + "-", ".zip").toFile();
                     FileOutputStream fos = new FileOutputStream(outputFile);
                     m_logStream.println("Zipping module structure to " + outputFile.getAbsolutePath());
                     zipRfsFolder(dirEntry, fos);

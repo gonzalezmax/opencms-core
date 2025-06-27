@@ -27,6 +27,7 @@
 
 package org.opencms.workplace.tools.accounts;
 
+import java.nio.file.Files;
 import org.opencms.i18n.CmsEncoder;
 import org.opencms.jsp.CmsJspActionElement;
 import org.opencms.main.CmsIllegalArgumentException;
@@ -122,7 +123,7 @@ public class CmsUserDataImportDialog extends A_CmsUserDataImexportDialog {
 
         if ((fi != null) && CmsStringUtil.isNotEmptyOrWhitespaceOnly(fi.getName())) {
             byte[] content = fi.get();
-            File importFile = File.createTempFile("import_users", ".csv");
+            File importFile = Files.createTempFile("import_users", ".csv").toFile();
             m_importFile = importFile.getAbsolutePath();
 
             FileOutputStream fileOutput = new FileOutputStream(importFile);
