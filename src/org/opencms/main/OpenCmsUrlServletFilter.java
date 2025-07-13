@@ -27,6 +27,7 @@
 
 package org.opencms.main;
 
+import static io.github.pixee.security.jakarta.PathValidator.validateDispatcherPath;
 import org.opencms.util.CmsStringUtil;
 
 import java.io.IOException;
@@ -142,7 +143,7 @@ public class OpenCmsUrlServletFilter implements Filter {
                     String uri = req.getRequestURI();
                     if (!uri.matches(m_regex)) {
                         String adjustedUri = uri.replaceFirst(m_contextPath + "/", m_servletPath);
-                        req.getRequestDispatcher(adjustedUri).forward(request, response);
+                        req.getRequestDispatcher(validateDispatcherPath(adjustedUri)).forward(request, response);
                         return;
                     }
                 }
