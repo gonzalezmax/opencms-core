@@ -27,6 +27,7 @@
 
 package org.opencms.flex;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.jsp.util.CmsJspStandardContextBean;
 import org.opencms.main.CmsIllegalArgumentException;
 import org.opencms.main.CmsLog;
@@ -336,7 +337,7 @@ public class CmsFlexResponse extends HttpServletResponseWrapper {
                 for (int j = 0; j < l.size(); j++) {
                     if ((j == 0) && ((l.get(0)).startsWith(SET_HEADER))) {
                         String s = l.get(0);
-                        res.setHeader(key, s.substring(SET_HEADER.length()));
+                        res.setHeader(key, Newlines.stripAll(s.substring(SET_HEADER.length())));
                     } else {
                         res.addHeader(key, l.get(j));
                     }
@@ -703,7 +704,7 @@ public class CmsFlexResponse extends HttpServletResponseWrapper {
             // add all headers found to make sure cookies can be set before redirect
             processHeaders(getHeaders(), topRes);
             if (permanent) {
-                topRes.setHeader(CmsRequestUtil.HEADER_LOCATION, location);
+                topRes.setHeader(CmsRequestUtil.HEADER_LOCATION, Newlines.stripAll(location));
                 topRes.setStatus(HttpServletResponse.SC_MOVED_PERMANENTLY);
             } else {
                 topRes.sendRedirect(location);
@@ -786,7 +787,7 @@ public class CmsFlexResponse extends HttpServletResponseWrapper {
                         name,
                         value));
             }
-            m_res.setHeader(name, value);
+            m_res.setHeader(name, Newlines.stripAll(value));
         }
     }
 

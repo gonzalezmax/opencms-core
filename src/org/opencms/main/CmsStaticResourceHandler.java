@@ -27,6 +27,7 @@
 
 package org.opencms.main;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.util.CmsStringUtil;
 
 import java.io.FileNotFoundException;
@@ -279,7 +280,7 @@ public class CmsStaticResourceHandler implements I_CmsRequestHandler {
         if (resourceCacheTime > 0) {
             cacheControl = "max-age=" + String.valueOf(resourceCacheTime);
         }
-        response.setHeader("Cache-Control", cacheControl);
+        response.setHeader("Cache-Control", Newlines.stripAll(cacheControl));
         response.setDateHeader("Expires", System.currentTimeMillis() + (resourceCacheTime * 1000));
 
         // Find the modification timestamp

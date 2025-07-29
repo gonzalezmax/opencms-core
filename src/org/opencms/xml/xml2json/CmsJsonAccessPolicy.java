@@ -27,6 +27,7 @@
 
 package org.opencms.xml.xml2json;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.file.CmsGroup;
 import org.opencms.file.CmsObject;
 import org.opencms.main.CmsException;
@@ -250,13 +251,13 @@ public class CmsJsonAccessPolicy {
     public void setCorsHeaders(HttpServletResponse response) {
 
         if (m_corsAllowOrigin != null) {
-            response.setHeader("Access-Control-Allow-Origin", m_corsAllowOrigin);
+            response.setHeader("Access-Control-Allow-Origin", Newlines.stripAll(m_corsAllowOrigin));
         }
         if (m_corsAllowMethods != null) {
-            response.setHeader("Access-Control-Allow-Methods", m_corsAllowMethods);
+            response.setHeader("Access-Control-Allow-Methods", Newlines.stripAll(m_corsAllowMethods));
         }
         if (m_corsAllowHeaders != null) {
-            response.setHeader("Access-Control-Allow-Headers", m_corsAllowHeaders);
+            response.setHeader("Access-Control-Allow-Headers", Newlines.stripAll(m_corsAllowHeaders));
         }
     }
 

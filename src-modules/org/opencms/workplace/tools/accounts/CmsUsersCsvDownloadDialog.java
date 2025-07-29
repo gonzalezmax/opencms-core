@@ -27,6 +27,7 @@
 
 package org.opencms.workplace.tools.accounts;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.db.CmsUserExportSettings;
 import org.opencms.file.CmsUser;
 import org.opencms.flex.CmsFlexController;
@@ -195,7 +196,7 @@ public class CmsUsersCsvDownloadDialog extends A_CmsUserDataImexportDialog {
         String filename = "export_users" + new Random().nextInt(1024) + ".csv";
         res.setHeader(
             "Content-Disposition",
-            new StringBuffer("attachment; filename=\"").append(filename).append("\"").toString());
+            Newlines.stripAll(new StringBuffer("attachment; filename=\"").append(filename).append("\"").toString()));
         return buffer.toString();
     }
 

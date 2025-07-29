@@ -27,6 +27,7 @@
 
 package org.opencms.main;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.crypto.CmsEncryptionException;
 import org.opencms.file.CmsObject;
 import org.opencms.gwt.CmsCoreService;
@@ -323,7 +324,7 @@ public class CmsUIServlet extends VaadinServlet implements SystemMessagesProvide
         int runlevel = OpenCmsCore.getInstance().getRunLevel();
 
         // write OpenCms server identification in the response header
-        response.setHeader(CmsRequestUtil.HEADER_SERVER, OpenCmsCore.getInstance().getSystemInfo().getVersion());
+        response.setHeader(CmsRequestUtil.HEADER_SERVER, Newlines.stripAll(OpenCmsCore.getInstance().getSystemInfo().getVersion()));
 
         if (runlevel != OpenCms.RUNLEVEL_4_SERVLET_ACCESS) {
             // not the "normal" servlet runlevel

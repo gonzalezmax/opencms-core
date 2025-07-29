@@ -27,6 +27,7 @@
 
 package org.opencms.ade.configuration;
 
+import io.github.pixee.security.Newlines;
 import org.opencms.ade.configuration.CmsADEConfigData.DetailInfo;
 import org.opencms.ade.configuration.CmsElementView.ElementViewComparator;
 import org.opencms.ade.configuration.formatters.CmsFormatterConfigurationCache;
@@ -1134,7 +1135,7 @@ public class CmsADEManager {
             }
         }
         request.setAttribute(CmsRequestUtil.ATTRIBUTE_ERRORCODE, errorCode);
-        response.setHeader("Location", CmsEncoder.convertHostToPunycode(lnkUri));
+        response.setHeader("Location", Newlines.stripAll(CmsEncoder.convertHostToPunycode(lnkUri)));
         response.setHeader("Connection", "close");
         response.setStatus(errorCode.intValue());
     }
