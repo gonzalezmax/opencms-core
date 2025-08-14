@@ -27,6 +27,7 @@
 
 package org.opencms.workplace.tools.accounts;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.opencms.i18n.CmsEncoder;
 import org.opencms.jsp.CmsJspActionElement;
 import org.opencms.main.CmsIllegalArgumentException;
@@ -132,7 +133,7 @@ public class CmsUserDataImportDialog extends A_CmsUserDataImexportDialog {
 
             FileReader fileReader = new FileReader(importFile);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
-            String line = bufferedReader.readLine();
+            String line = BoundedLineReader.readLine(bufferedReader, 5_000_000);
 
             if (line != null) {
                 List colDefs = CmsStringUtil.splitAsList(line, CmsXsltUtil.getPreferredDelimiter(line));

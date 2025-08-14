@@ -28,6 +28,7 @@
 package org.opencms.ui.dialogs.history.diff;
 
 import com.alkacon.diff.Diff;
+import io.github.pixee.security.BoundedLineReader;
 
 import org.opencms.main.CmsLog;
 import org.opencms.ui.A_CmsUI;
@@ -189,7 +190,7 @@ public class CmsTextDiffPanel extends VerticalLayout {
         String line;
         StringBuffer result = new StringBuffer();
         BufferedReader br = new BufferedReader(new StringReader(diff));
-        while ((line = br.readLine()) != null) {
+        while ((line = BoundedLineReader.readLine(br, 5_000_000)) != null) {
             if ("".equals(line.trim())) {
                 line = "&nbsp;";
             }
